@@ -11,6 +11,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action JumpEvent;
     public event Action DodgeEvent;
 
+    public event Action LockOnEvent;
+
     private Controls controls;
 
     private void Start()
@@ -48,5 +50,12 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public void OnLook(InputAction.CallbackContext context)
     {
         
+    }
+
+    public void OnLockOn(InputAction.CallbackContext context)
+    {
+        if (!context.performed) { return; }
+
+        LockOnEvent?.Invoke();
     }
 }

@@ -12,6 +12,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Enter()
     {
+        stateMachine.InputReader.LockOnEvent += LockOn;
 
     }
 
@@ -34,8 +35,13 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-
+        stateMachine.InputReader.LockOnEvent += LockOn;
     }
+
+    void LockOn()
+    {
+        stateMachine.SwitchState(new PlayerLockOnState(stateMachine));
+    } 
 
     private Vector3 CalculateMovement()
     {
