@@ -35,11 +35,13 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Exit()
     {
-        stateMachine.InputReader.LockOnEvent += LockOn;
+        stateMachine.InputReader.LockOnEvent -= LockOn;
     }
 
     void LockOn()
     {
+        if (!stateMachine.Targeter.LockOnTarget()) return;
+
         stateMachine.SwitchState(new PlayerLockOnState(stateMachine));
     } 
 

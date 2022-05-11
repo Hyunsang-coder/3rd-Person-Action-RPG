@@ -9,22 +9,22 @@ public class PlayerLockOnState : PlayerBaseState
     bool isLockon;
     public override void Enter()
     {
-        stateMachine.InputReader.LockOnEvent += LockOn;
+        stateMachine.InputReader.LockOnEvent += CancelLockOn;
     }
 
     public override void Tick(float deltaTime)
     {
-        
+        Debug.Log(stateMachine.Targeter.target.name);
     }
 
     public override void Exit()
     {
-        stateMachine.InputReader.LockOnEvent -= LockOn;
+        stateMachine.Targeter.target = null;
+        stateMachine.InputReader.LockOnEvent -= CancelLockOn;
     }
-    void LockOn()
+    void CancelLockOn()
     {
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     } 
-
 
 }

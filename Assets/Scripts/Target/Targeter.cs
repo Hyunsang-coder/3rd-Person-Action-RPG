@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Targeter : MonoBehaviour
 {
-    public List<Target> targetList = new List<Target>{};
+    [SerializeField] List<Target> targetList = new List<Target>{};
+    public Target target;
 
-    
     void OnTriggerEnter(Collider other)
     {
         if (!other.TryGetComponent<Target>(out Target target)) return;
@@ -19,6 +19,14 @@ public class Targeter : MonoBehaviour
         if (!other.TryGetComponent<Target>(out Target target)) return;
         
         targetList.Remove(target);
+    }
+
+    public bool LockOnTarget()
+    {
+        if (targetList.Count == 0) return false;
+
+        target = targetList[0]; 
+        return true;
     }
 
 }
