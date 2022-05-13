@@ -11,22 +11,28 @@ public class PlayerTargetingState : PlayerBaseState
     bool isLockon;
     public override void Enter()
     {
-        stateMachine.InputReader.LockOnEvent += CancelTargeting;
+        stateMachine.InputReader.TargetingEvent += OnCancel;
         stateMachine.Animator.Play(TargetingBlendTreeHash);
     }
 
     public override void Tick(float deltaTime)
     {
-        Debug.Log(stateMachine.Targeter.target.name);
+        if (stateMachine.Targeter.CurrentTarget == null)
+        {
+            stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+            return;
+        }
+
     }
 
     public override void Exit()
     {
-        stateMachine.Targeter.target = null;
-        stateMachine.InputReader.LockOnEvent -= CancelTargeting;
+        stateMachine.Targeter.CurrentTarget = null;
+        stateMachine.InputReader.TargetingEvent -= OnCancel;
     }
-    void CancelTargeting()
+    void OnCancel()
     {
+        stateMachine.Targeter.Cancel();
         stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
     } 
 

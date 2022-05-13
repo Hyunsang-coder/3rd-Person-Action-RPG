@@ -11,7 +11,7 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     public event Action JumpEvent;
     public event Action DodgeEvent;
 
-    public event Action LockOnEvent;
+    public event Action TargetingEvent;
 
     private Controls controls;
 
@@ -52,10 +52,11 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         
     }
 
-    public void OnLockOn(InputAction.CallbackContext context)
+    public void OnTargeting(InputAction.CallbackContext context)
     {
         if (!context.performed) { return; }
 
-        LockOnEvent?.Invoke();
+        TargetingEvent?.Invoke();
     }
+
 }

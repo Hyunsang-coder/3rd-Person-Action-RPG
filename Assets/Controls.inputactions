@@ -42,7 +42,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "LockOn",
+                    "name": "Targeting",
                     "type": "Button",
                     "id": "44894ab6-471c-473f-a01d-629007a8f292",
                     "expectedControlType": "Button",
@@ -246,7 +246,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Mouse & Keyboard",
-                    "action": "LockOn",
+                    "action": "Targeting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -257,7 +257,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "LockOn",
+                    "action": "Targeting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
