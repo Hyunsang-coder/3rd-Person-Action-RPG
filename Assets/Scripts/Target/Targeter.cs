@@ -24,6 +24,7 @@ public class Targeter : MonoBehaviour
         targets.Remove(target);
     }
 
+    // FreelookState에서 타켓 키 눌렀을 때 실행
     public bool SelectTarget()
     {
         if (targets.Count == 0) return false;
@@ -41,6 +42,8 @@ public class Targeter : MonoBehaviour
         CurrentTarget = null;
     }
 
+
+    // Cancel과 유사하지만 타겟 파괴 시 사용
     private void RemoveTarget(Target target)
     {
         if (CurrentTarget == target)

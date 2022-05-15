@@ -22,7 +22,8 @@ public class PlayerFreeLookState : PlayerBaseState
     {
         Vector3 movement = CalculateMovement();
 
-        stateMachine.Controller.Move(movement * stateMachine.FreeLookMovementSpeed * deltaTime);
+        Move((movement + stateMachine.ForceReceiver.Movement) * stateMachine.FreeLookMovementSpeed, deltaTime);
+        //stateMachine.Controller.Move(movement * stateMachine.FreeLookMovementSpeed * deltaTime);
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
         {
@@ -40,6 +41,7 @@ public class PlayerFreeLookState : PlayerBaseState
         stateMachine.InputReader.TargetingEvent-= OnTarget;
     }
 
+    // 타겟 버튼 눌렀을 때! 
     void OnTarget()
     {
         if (!stateMachine.Targeter.SelectTarget()) { return; }
