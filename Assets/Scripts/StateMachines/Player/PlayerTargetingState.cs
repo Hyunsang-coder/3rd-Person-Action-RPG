@@ -30,7 +30,6 @@ public class PlayerTargetingState : PlayerBaseState
         Move((movement + stateMachine.ForceReceiver.Movement)*stateMachine.TargetingMovementSpeed, deltaTime);
 
         
-
         UpdateAnimator(deltaTime);
         FaceTarget();
 
@@ -81,8 +80,6 @@ public class PlayerTargetingState : PlayerBaseState
             float rightValue = stateMachine.InputReader.MovementValue.x > 0? 1 : -1;
             stateMachine.Animator.SetFloat(TargetingRightHash, rightValue, 0.1f, deltaTime);
         }
-        
-        
     }
 
 }
