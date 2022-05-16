@@ -15,4 +15,15 @@ public abstract class PlayerBaseState : State
     {
         stateMachine.Controller.Move(motion * deltatime);
     }
+
+    protected void FaceTarget()
+    {   
+        if (stateMachine.Targeter.CurrentTarget == null) return;
+
+        Vector3 targetDirection = stateMachine.Targeter.CurrentTarget.transform.position - stateMachine.transform.position;
+        targetDirection.y= 0;
+        stateMachine.transform.rotation = Quaternion.LookRotation(targetDirection);
+
+        Debug.Log("TargetDirection is " + targetDirection);
+    }
 }

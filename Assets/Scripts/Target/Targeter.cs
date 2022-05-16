@@ -22,6 +22,7 @@ public class Targeter : MonoBehaviour
         if (!other.TryGetComponent<Target>(out Target target)) return;
         
         targets.Remove(target);
+        Cancel();
     }
 
     // FreelookState에서 타켓 키 눌렀을 때 실행
