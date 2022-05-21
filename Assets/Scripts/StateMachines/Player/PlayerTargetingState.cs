@@ -17,13 +17,22 @@ public class PlayerTargetingState : PlayerBaseState
     {
         stateMachine.InputReader.TargetingEvent += OnCancel;
         stateMachine.Animator.Play(TargetingBlendTreeHash);
+
     }
 
     public override void Tick(float deltaTime)
     {
+
+        if (stateMachine.InputReader.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+            return;
+        }
+
         if (stateMachine.Targeter.CurrentTarget == null)
         {
             stateMachine.SwitchState(new PlayerFreeLookState(stateMachine));
+            return;
         }
 
         Vector3 movement = CanculateMovement();
@@ -33,14 +42,13 @@ public class PlayerTargetingState : PlayerBaseState
         UpdateAnimator(deltaTime);
         FaceTarget();
 
-
     }
 
 
 
     public override void Exit()
     {
-        stateMachine.Targeter.CurrentTarget = null;
+        //stateMachine.Targeter.CurrentTarget = null;
         stateMachine.InputReader.TargetingEvent -= OnCancel;
     }
     void OnCancel()
@@ -81,5 +89,6 @@ public class PlayerTargetingState : PlayerBaseState
             stateMachine.Animator.SetFloat(TargetingRightHash, rightValue, 0.1f, deltaTime);
         }
     }
+
 
 }

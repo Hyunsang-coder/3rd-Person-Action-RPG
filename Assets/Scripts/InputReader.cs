@@ -7,16 +7,21 @@ using UnityEngine.InputSystem;
 public class InputReader : MonoBehaviour, Controls.IPlayerActions
 {
     public Vector2 MovementValue { get; private set; }
+    
+    public bool IsAttacking{get; private set;}
 
     public event Action JumpEvent;
     public event Action DodgeEvent;
 
     public event Action TargetingEvent;
 
+
+    // Control 선언 필요 
     private Controls controls;
 
     private void Start()
     {
+        // 오브젝트화 + 콜백 세팅 + 플레이어 컨트롤 스킴 활성화
         controls = new Controls();
         controls.Player.SetCallbacks(this);
 
@@ -59,4 +64,15 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         TargetingEvent?.Invoke();
     }
 
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        if (context.performed) 
+        {
+            IsAttacking = true;
+        }
+        else if (context.canceled) 
+        {
+            IsAttacking = false;
+        }
+    }
 }
