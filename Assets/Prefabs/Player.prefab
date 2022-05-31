@@ -1651,6 +1651,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 720d97b48ead66545b037c50f1890a78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cineTargetGroup: {fileID: 0}
+  targets: []
+  CurrentTarget: {fileID: 0}
 --- !u!135 &1047216485410295479
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2608,9 +2611,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 5817561726674404110}
   <Controller>k__BackingField: {fileID: 8556580953775966359}
+  <ForceReceiver>k__BackingField: {fileID: 0}
   <Animator>k__BackingField: {fileID: 3729873165655837447}
+  <Targeter>k__BackingField: {fileID: 0}
   <FreeLookMovementSpeed>k__BackingField: 6
+  <TargetingMovementSpeed>k__BackingField: 0
   <RotationDamping>k__BackingField: 10
+  <Attacks>k__BackingField:
+  - <AnimationName>k__BackingField: Attack1
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 1
+    <ComboAttackTime>k__BackingField: 0.6
+    <ForceTime>k__BackingField: 0.35
+    <Force>k__BackingField: 15
+  - <AnimationName>k__BackingField: Attack2
+    <TransitionDuration>k__BackingField: 0.1
+    <ComboStateIndex>k__BackingField: 2
+    <ComboAttackTime>k__BackingField: 0.5
+    <ForceTime>k__BackingField: 0.35
+    <Force>k__BackingField: 15
+  - <AnimationName>k__BackingField: Attack3
+    <TransitionDuration>k__BackingField: 0.2
+    <ComboStateIndex>k__BackingField: -1
+    <ComboAttackTime>k__BackingField: 1.5
+    <ForceTime>k__BackingField: 0.35
+    <Force>k__BackingField: 20
 --- !u!114 &5817561726674404110
 MonoBehaviour:
   m_ObjectHideFlags: 0

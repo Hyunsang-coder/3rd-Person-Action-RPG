@@ -20,6 +20,13 @@ public class PlayerFreeLookState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
+        // Targeting 없이도 바로 공격 가능
+        if (stateMachine.InputReader.IsAttacking)
+        {
+            stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+            return;
+        }
+
         Vector3 movement = CalculateMovement();
 
         Move((movement + stateMachine.ForceReceiver.Movement) * stateMachine.FreeLookMovementSpeed, deltaTime);
@@ -43,7 +50,7 @@ public class PlayerFreeLookState : PlayerBaseState
     // 타겟 버튼 눌렀을 때! 
     void OnTarget()
     {
-        if (!stateMachine.Targeter.SelectTarget()) { return; }
+        if (!stateMachine.Targeter.SelectTarget()) return;
         stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
     } 
 
