@@ -5,7 +5,6 @@ using UnityEngine;
 public class WeaponHandler : MonoBehaviour
 {
     [SerializeField] GameObject weaponLogic;
-    
 
     public void EnableWeapon()
     {

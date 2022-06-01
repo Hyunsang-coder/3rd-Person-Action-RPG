@@ -12,11 +12,12 @@ public class PlayerTargetingState : PlayerBaseState
 
     private readonly int TargetingRightHash = Animator.StringToHash("TargetingRight");
     
+    const float CrossFadeDurataion = 0.1f;
     bool isLockon;
     public override void Enter()
     {
         stateMachine.InputReader.TargetingEvent += OnCancel;
-        stateMachine.Animator.Play(TargetingBlendTreeHash);
+        stateMachine.Animator.CrossFadeInFixedTime(TargetingBlendTreeHash, CrossFadeDurataion);
 
     }
 

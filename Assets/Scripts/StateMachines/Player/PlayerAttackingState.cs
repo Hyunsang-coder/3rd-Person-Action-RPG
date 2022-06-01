@@ -15,8 +15,10 @@ public class PlayerAttackingState : PlayerBaseState
     }
     public override void Enter()
     {
+        stateMachine.Weapon.SetAttack(attack.Damage);
         // Attacking State 진입과 동시에 애니메이션 교체 
         stateMachine.Animator.CrossFadeInFixedTime(attack.AnimationName, attack.TransitionDuration);
+        
     }
 
 
@@ -62,7 +64,7 @@ public class PlayerAttackingState : PlayerBaseState
     private void TryApplyForce(float normalizedTime)
     {
         if(alreadyAppliedForce) return;
-        stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward);
+        stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward*attack.Force);
         alreadyAppliedForce = true;
     }
 
