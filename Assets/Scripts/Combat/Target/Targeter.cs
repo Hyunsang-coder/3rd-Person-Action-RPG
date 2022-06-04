@@ -7,12 +7,12 @@ public class Targeter : MonoBehaviour
 {
     [SerializeField] private CinemachineTargetGroup cineTargetGroup;
     [SerializeField] List<Target> targets = new List<Target>{};
-    Camera camera;
+    Camera _camera;
     public Target CurrentTarget;
 
     void Start() 
     {
-        camera = Camera.main;
+        _camera = Camera.main;
     }
 
     void OnTriggerEnter(Collider other)
@@ -43,7 +43,7 @@ public class Targeter : MonoBehaviour
         foreach (Target target in targets)
         {
             // 타깃의 위치 값을 1, 1 사이즈 화면을 기준으로 return 그래서 가운데 좌표값이 0.5, 0.5
-            Vector2 viewPos = camera.WorldToViewportPoint(target.transform.position);
+            Vector2 viewPos = _camera.WorldToViewportPoint(target.transform.position);
 
             if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
             {
