@@ -4,6 +4,7 @@ public class EnemyIdleState : EnemyBaseState
 {
 
     private readonly int LocomotionHash = Animator.StringToHash("Locomotion");
+    private readonly int SpeedHash = Animator.StringToHash("Speed");
 
     private const float CrossFadeDuration = 0.1f;
     private const float AnimatorDampTime = 0.1f;
@@ -19,11 +20,10 @@ public class EnemyIdleState : EnemyBaseState
         Move(deltaTime);
         if (IsInChaseRange())
         {
-            Debug.Log("In Range");
-            // transition to ChaseState;
+            stateMachine.SwitchState(new EnemyChasingState(stateMachine));
             return;
         }
-        stateMachine.Animator.SetFloat("Speed", 0, AnimatorDampTime, deltaTime);
+        stateMachine.Animator.SetFloat(SpeedHash, 0, AnimatorDampTime, deltaTime);
         
         
         
