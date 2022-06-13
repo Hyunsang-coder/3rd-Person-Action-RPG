@@ -592,6 +592,7 @@ MonoBehaviour:
   <Agent>k__BackingField: {fileID: 8466554389563156280}
   <MovementSpeed>k__BackingField: 3
   <PlayerChasingRange>k__BackingField: 10
+  <AttackRange>k__BackingField: 3
 --- !u!95 &6361082820398818985
 Animator:
   serializedVersion: 4

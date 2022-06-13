@@ -17,12 +17,29 @@ public abstract class EnemyBaseState : State
         return distanceToPlayerSqr <= stateMachine.PlayerChasingRange*stateMachine.PlayerChasingRange;
     }
 
+     protected bool IsInAttackRange()
+    {
+        float distanceToPlayerSqr = (stateMachine.Player.transform.position - stateMachine.transform.position).sqrMagnitude;
+
+        return distanceToPlayerSqr <= stateMachine.AttackRange*stateMachine.AttackRange;
+    }
+
     
     protected void Move(float deltatime)
     {
         stateMachine.Controller.Move(stateMachine.ForceReceiver.Movement*deltatime);
     }
 
+    protected void FacePlayer()
+    {
+         if (stateMachine.Player == null) return;
+
+        Vector3 targetDirection = stateMachine.Player.transform.position - stateMachine.transform.position;
+        targetDirection.y= 0;
+
+        stateMachine.transform.rotation = Quaternion.LookRotation(targetDirection);
+    }
+       
     protected void Move(Vector3 motion, float deltatime)
     {
         stateMachine.Controller.Move(motion * deltatime);
