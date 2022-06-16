@@ -551,7 +551,7 @@ Transform:
   - {fileID: 2506131620165289141}
   - {fileID: 871296529270186128}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &8466554389563156280
 NavMeshAgent:
@@ -596,6 +596,7 @@ MonoBehaviour:
   <PlayerChasingRange>k__BackingField: 10
   <AttackRange>k__BackingField: 1.5
   <AttackDamage>k__BackingField: 20
+  <Knockback>k__BackingField: 10
 --- !u!95 &6361082820398818985
 Animator:
   serializedVersion: 4
@@ -672,6 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6638874913041598874}
+  agent: {fileID: 8466554389563156280}
   drag: 0.3
 --- !u!114 &1748274837
 MonoBehaviour:
@@ -2085,7 +2087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4236edda834068b478765c498fe02d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myCollider: {fileID: 505732863}
+  myCollider: {fileID: 6638874913041598874}
 --- !u!1 &7237877435664386098
 GameObject:
   m_ObjectHideFlags: 0

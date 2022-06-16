@@ -9,6 +9,7 @@ public class WeaponDamage : MonoBehaviour
 
     PlayerStateMachine statemachine;
     int damage;
+    float knockback;
 
     void Awake()
     {
@@ -25,16 +26,26 @@ public class WeaponDamage : MonoBehaviour
         if(alreadyHit.Contains(other)) return;
 
         alreadyHit.Add(other);
+
+        Debug.Log(other.gameObject.name);
  
         if(other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(damage); 
             Debug.Log("Dealt damage: " + damage);
         }
+
+        if(other.TryGetComponent<ForceReceiver>(out ForceReceiver forcereciver))
+        {
+            Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
+            forcereciver.AddForce( direction* knockback);
+        }
+
     }
 
-    public void SetAttack(int damage)
+    public void SetAttack(int damage, float knockback)
     {
         this.damage = damage;
+        this.knockback = knockback;
     }
 }
