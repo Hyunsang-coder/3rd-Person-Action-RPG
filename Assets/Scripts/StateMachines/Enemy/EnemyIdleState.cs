@@ -3,12 +3,15 @@ using UnityEngine;
 public class EnemyIdleState : EnemyBaseState
 {
 
+    public EnemyIdleState(EnemyStateMachine stateMachine): base(stateMachine){}
+
+    
     private readonly int LocomotionHash = Animator.StringToHash("Locomotion");
     private readonly int SpeedHash = Animator.StringToHash("Speed");
 
     private const float CrossFadeDuration = 0.1f;
     private const float AnimatorDampTime = 0.1f;
-    public EnemyIdleState(EnemyStateMachine stateMachine): base(stateMachine){}
+    
 
     public override void Enter()
     {

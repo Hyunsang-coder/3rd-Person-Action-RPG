@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
@@ -7,6 +6,7 @@ public class Health : MonoBehaviour
     [SerializeField] int maxHealth = 100;
 
     int health;
+    public event Action OnTakeDamge;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +19,8 @@ public class Health : MonoBehaviour
         
         // 둘 중에 큰 수 반환
         health = Mathf.Max(health - damage, 0);
+
+        OnTakeDamge?.Invoke();
         Debug.Log("Health: " + health);
     }
 

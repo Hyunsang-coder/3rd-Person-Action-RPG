@@ -26,8 +26,6 @@ public class WeaponDamage : MonoBehaviour
         if(alreadyHit.Contains(other)) return;
 
         alreadyHit.Add(other);
-
-        Debug.Log(other.gameObject.name);
  
         if(other.TryGetComponent<Health>(out Health health))
         {
@@ -40,7 +38,6 @@ public class WeaponDamage : MonoBehaviour
             Vector3 direction = (other.transform.position - myCollider.transform.position).normalized;
             forcereciver.AddForce( direction* knockback);
         }
-
     }
 
     public void SetAttack(int damage, float knockback)

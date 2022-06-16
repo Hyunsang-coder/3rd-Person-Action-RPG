@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,6 +10,8 @@ public class EnemyStateMachine : StateMachine
     [field: SerializeField] public NavMeshAgent Agent { get; private set; }
 
     [field: SerializeField] public WeaponDamage Weapon { get; private set; }
+
+    [field: SerializeField] public Health Health { get; private set; }
     
     [field: SerializeField] public float MovementSpeed { get; private set; }
     [field: SerializeField] public float PlayerChasingRange { get; private set; }
@@ -30,6 +33,21 @@ public class EnemyStateMachine : StateMachine
         Agent.updateRotation = false;
 
         SwitchState(new EnemyIdleState(this));
+    }
+
+    private void OnEnable()
+    {
+        Health.OnTakeDamge += HandleTakeDamage;
+    }
+
+    private void HandleTakeDamage()
+    {
+        SwitchState(new EnemyImpactState(this));
+    }
+
+    private void OnDisable()
+    {
+        Health.OnTakeDamge -= HandleTakeDamage;
     }
 
     private void OnDrawGizmosSelected() 
