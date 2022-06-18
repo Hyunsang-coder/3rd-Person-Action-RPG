@@ -36,8 +36,6 @@ public class EnemyChasingState : EnemyBaseState
         FacePlayer();
         stateMachine.Animator.SetFloat(SpeedHash, 1, AnimatorDampTime, deltaTime);
         
-        
-        
     }
 
     public override void Exit()

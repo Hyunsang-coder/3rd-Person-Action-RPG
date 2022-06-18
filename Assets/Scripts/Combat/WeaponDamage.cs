@@ -30,7 +30,6 @@ public class WeaponDamage : MonoBehaviour
         if(other.TryGetComponent<Health>(out Health health))
         {
             health.DealDamage(damage); 
-            Debug.Log("Dealt damage: " + damage);
         }
 
         if(other.TryGetComponent<ForceReceiver>(out ForceReceiver forcereciver))
@@ -45,4 +44,5 @@ public class WeaponDamage : MonoBehaviour
         this.damage = damage;
         this.knockback = knockback;
     }
+
 }

@@ -32,12 +32,13 @@ public class PlayerAttackingState : PlayerBaseState
         // 애니메이션이 재생 중이라면,
         if (normalizedTime >= previousFrameTime && normalizedTime < 1f)
         {
-            // Attacking 버튼을 누른 상태라면
+            
             if (normalizedTime >= attack.ForceTime)
             {
                 TryApplyForce(normalizedTime);
             }
-
+            
+            // Attacking 버튼을 누른 상태라면
             if (stateMachine.InputReader.IsAttacking)
             {
                 TryComboAttack(normalizedTime);

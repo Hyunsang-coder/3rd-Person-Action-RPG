@@ -7,6 +7,7 @@ public class Health : MonoBehaviour
 
     int health;
     public event Action OnTakeDamge;
+    public event Action OnDie;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +20,17 @@ public class Health : MonoBehaviour
         
         // 둘 중에 큰 수 반환
         health = Mathf.Max(health - damage, 0);
-
         OnTakeDamge?.Invoke();
-        Debug.Log("Health: " + health);
+
+        if (health == 0) 
+        {
+            OnDie?.Invoke();
+            Debug.Log("die event");
+            return;
+        }
+        Debug.Log(gameObject.tag + "'s Health: " + health);
     }
+
+    
 
 }
