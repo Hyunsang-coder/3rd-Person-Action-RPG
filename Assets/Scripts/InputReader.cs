@@ -10,6 +10,8 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
     
     public bool IsAttacking{get; private set;}
 
+    public bool IsBlocking{get; private set;}
+
     public event Action JumpEvent;
     public event Action DodgeEvent;
 
@@ -73,6 +75,19 @@ public class InputReader : MonoBehaviour, Controls.IPlayerActions
         else if (context.canceled) 
         {
             IsAttacking = false;
+        }
+        // 이벤트로 구현하면 계속 눌러줘야 되고, bool로 구현하면 누르고 있는 동안 계속 실행
+    }
+
+    public void OnBlock(InputAction.CallbackContext context)
+    {
+        if (context.performed) 
+        {
+            IsBlocking = true;
+        }
+        else if (context.canceled) 
+        {
+            IsBlocking = false;
         }
     }
 }
