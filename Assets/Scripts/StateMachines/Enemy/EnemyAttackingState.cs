@@ -13,8 +13,10 @@ public class EnemyAttackingState : EnemyBaseState
     public EnemyAttackingState(EnemyStateMachine stateMachine): base(stateMachine){}
     public override void Enter()
     {
+       FacePlayer();
        stateMachine.Weapon.SetAttack(stateMachine.AttackDamage, stateMachine.Knockback);
        stateMachine.Animator.CrossFadeInFixedTime(AttackHash, CrossFadeDuration);
+
     }
    
     public override void Tick(float deltaTime)

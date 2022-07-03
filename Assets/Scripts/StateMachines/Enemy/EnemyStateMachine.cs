@@ -24,11 +24,11 @@ public class EnemyStateMachine : StateMachine
 
     [field: SerializeField] public int Knockback { get; private set; }
 
-    public GameObject Player {get; private set;}
+    public Health Player {get; private set;}
 
     private void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Health>();
 
 
         //NavMesh로 에너미를 움직이지 않게 함
