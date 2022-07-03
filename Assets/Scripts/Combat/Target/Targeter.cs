@@ -45,10 +45,19 @@ public class Targeter : MonoBehaviour
             // 타깃의 위치 값을 1, 1 사이즈 화면을 기준으로 return 그래서 가운데 좌표값이 0.5, 0.5
             Vector2 viewPos = _camera.WorldToViewportPoint(target.transform.position);
 
+            /*
             if (viewPos.x < 0 || viewPos.x > 1 || viewPos.y < 0 || viewPos.y > 1)
             {
                 continue;
             }
+            */
+
+            if (!target.GetComponentInChildren<Renderer>().isVisible)
+            {
+                continue;
+            }
+
+            
 
             Vector2 toCenter = viewPos - new Vector2(0.5f, 0.5f);
             
