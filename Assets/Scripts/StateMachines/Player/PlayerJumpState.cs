@@ -30,23 +30,16 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        //Move(momentum, deltaTime);
+        Move(momentum, deltaTime);
 
         //Debug.Log("Vertical Velocity is " + stateMachine.Controller.velocity);
 
 
-        /*if (stateMachine.Controller.velocity.y <= 0)
+        if (stateMachine.Controller.velocity.y <= 0)
         {
             stateMachine.SwitchState(new PlayerFallingState(stateMachine));
         }
-        */
-        float transitiontime = 0;
-        transitiontime += Time.deltaTime;
-        if (transitiontime > 0.5f)
-        {
-            ReturnToLocomotion();
-            return;
-        }
+        
 
         FaceTarget();
     }
