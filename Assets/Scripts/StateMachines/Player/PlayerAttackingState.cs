@@ -65,7 +65,7 @@ public class PlayerAttackingState : PlayerBaseState
     private void TryApplyForce(float normalizedTime)
     {
         if(alreadyAppliedForce) return;
-        stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward*attack.Force);
+        stateMachine.Gravity.AddForce(stateMachine.transform.forward*attack.Force);
         alreadyAppliedForce = true;
     }
 
