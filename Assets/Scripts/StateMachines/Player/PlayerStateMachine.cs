@@ -6,7 +6,11 @@ public class PlayerStateMachine : StateMachine
     // Monobehavior 상속 안 했지만 에디터창에 표시하기 위한 어트리뷰트
     [field: SerializeField] public InputReader InputReader { get; private set; }
     [field: SerializeField] public CharacterController Controller { get; private set; }
-    [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
+    //[field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
+
+    [field: SerializeField] public Gravity Gravity { get; private set; }
+
+
     [field: SerializeField] public WeaponDamage Weapon { get; private set; }
     [field: SerializeField] public Health Health { get; private set; }
     [field: SerializeField] public RagDoll Ragdoll { get; private set; }
@@ -20,8 +24,13 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public float DodgeCoolDown { get; private set; }
 
     [field: SerializeField] public Attack[] Attacks { get; private set; }
+    [field: SerializeField] public float JumpForce { get; private set; }
+
     public Transform MainCameraTransform { get; private set; }
     public float PreviousDodgeTime { get; private set; } = Mathf.NegativeInfinity;
+
+
+    
 
     private void Start()
     {
@@ -51,6 +60,7 @@ public class PlayerStateMachine : StateMachine
         PreviousDodgeTime = time;
     }
 
+    
 
     private void OnDisable()
     {

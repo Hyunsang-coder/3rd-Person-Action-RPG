@@ -1,28 +1,26 @@
-    using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ForceReceiver : MonoBehaviour
+public class Gravity : MonoBehaviour
 {
-    [SerializeField] CharacterController controller;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] float drag = 0.3f;
+    [SerializeField] private CharacterController controller;
+    [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private float drag = 0.3f;
 
-    Vector3 dampingVelocity;
-    Vector3 impact;
-    float verticalVelocity;
+    private Vector3 dampingVelocity;
+    private Vector3 impact;
+    private float verticalVelocity;
 
-
-    // 프로퍼티를 짧게 바꾼 형태로 아래와 같음. 
-    // public Vector3 Movement {get => Vector3.up*verticalVelocity} 
     public Vector3 Movement => impact + Vector3.up * verticalVelocity;
-        
-    void Update()
+
+    private void Update()
     {
         if (verticalVelocity < 0f && controller.isGrounded)
         {
             verticalVelocity = Physics.gravity.y * Time.deltaTime;
+
         }
         else
         {
@@ -40,6 +38,7 @@ public class ForceReceiver : MonoBehaviour
             }
         }
 
+        Debug.Log ("Is Grounded? " + controller.isGrounded);
     }
 
     public void AddForce(Vector3 force)
@@ -51,11 +50,8 @@ public class ForceReceiver : MonoBehaviour
         }
     }
 
-    public void Jump(float jumpForce)
+    public void Jumping(float jumpForce)
     {
         verticalVelocity += jumpForce;
-
-        Debug.Log("Jump invoked :" + verticalVelocity);
     }
-
 }

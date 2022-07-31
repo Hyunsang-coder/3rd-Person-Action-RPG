@@ -16,6 +16,7 @@ public class PlayerFreeLookState : PlayerBaseState
     public override void Enter()
     {
         stateMachine.InputReader.TargetingEvent += OnTarget;
+        stateMachine.InputReader.JumpEvent += OnJump;
         stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
     }
 
@@ -30,7 +31,7 @@ public class PlayerFreeLookState : PlayerBaseState
 
         Vector3 movement = CalculateMovement();
 
-        Move((movement + stateMachine.ForceReceiver.Movement) * stateMachine.FreeLookMovementSpeed, deltaTime);
+        Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);
 
         if (stateMachine.InputReader.MovementValue == Vector2.zero)
         {
@@ -43,17 +44,19 @@ public class PlayerFreeLookState : PlayerBaseState
         FaceMovementDirection(movement, deltaTime);
     }
 
-    public override void Exit()
-    {
-        stateMachine.InputReader.TargetingEvent-= OnTarget;
-    }
+    
 
     // 타겟 버튼 눌렀을 때! 
     void OnTarget()
     {
         if (!stateMachine.Targeter.SelectTarget()) return;
         stateMachine.SwitchState(new PlayerTargetingState(stateMachine));
-    } 
+    }
+
+    void OnJump()
+    {
+        stateMachine.SwitchState(new PlayerJumpState(stateMachine));
+    }
 
     private Vector3 CalculateMovement()
     {
@@ -75,5 +78,11 @@ public class PlayerFreeLookState : PlayerBaseState
             stateMachine.transform.rotation,
             Quaternion.LookRotation(movement),
             deltaTime * stateMachine.RotationDamping);
+    }
+
+    public override void Exit()
+    {
+        stateMachine.InputReader.TargetingEvent -= OnTarget;
+        stateMachine.InputReader.JumpEvent -= OnJump;
     }
 }
