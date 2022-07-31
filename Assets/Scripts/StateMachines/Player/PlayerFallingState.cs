@@ -27,7 +27,7 @@ public class PlayerFallingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-        //Move(momentum, deltaTime);
+        Move(momentum, deltaTime);
 
         if (stateMachine.Controller.isGrounded)
         {
