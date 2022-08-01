@@ -21,7 +21,7 @@ public abstract class PlayerBaseState : State
 
     protected void Move(Vector3 motion, float deltatime)
     {
-        stateMachine.Controller.Move((motion + stateMachine.Gravity.Movement) * deltatime);
+        stateMachine.Controller.Move((motion + stateMachine.ForceReceiver.Movement) * deltatime);
     }
 
     protected void FaceTarget()

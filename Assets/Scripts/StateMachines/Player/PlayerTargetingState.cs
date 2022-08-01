@@ -49,7 +49,7 @@ public class PlayerTargetingState : PlayerBaseState
         }
 
         Vector3 movement = CanculateMovement(deltaTime);
-        Move((movement + stateMachine.Gravity.Movement)*stateMachine.TargetingMovementSpeed, deltaTime);
+        Move((movement + stateMachine.ForceReceiver.Movement)*stateMachine.TargetingMovementSpeed, deltaTime);
 
         
         UpdateAnimator(deltaTime);

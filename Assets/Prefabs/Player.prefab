@@ -3721,9 +3721,9 @@ GameObject:
   - component: {fileID: 5817561726674404110}
   - component: {fileID: 3729873165655837447}
   - component: {fileID: 789063251081808015}
-  - component: {fileID: 5577295820242786018}
   - component: {fileID: 6489574447007660412}
   - component: {fileID: 2742245720257405743}
+  - component: {fileID: 1845133258283417486}
   - component: {fileID: 2485727459460213739}
   m_Layer: 6
   m_Name: Player
@@ -3768,7 +3768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 5817561726674404110}
   <Controller>k__BackingField: {fileID: 0}
-  <Gravity>k__BackingField: {fileID: 0}
+  <ForceReceiver>k__BackingField: {fileID: 0}
   <Weapon>k__BackingField: {fileID: 2671471413734469117}
   <Health>k__BackingField: {fileID: 789063251081808015}
   <Ragdoll>k__BackingField: {fileID: 2485727459460213739}
@@ -3851,21 +3851,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
---- !u!114 &5577295820242786018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8854589240073242548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e13881832e5204595b020b915d874031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 0}
-  agent: {fileID: 0}
-  drag: 0.3
 --- !u!114 &6489574447007660412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3905,6 +3890,21 @@ CharacterController:
   m_SkinWidth: 0.025
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.875, z: 0}
+--- !u!114 &1845133258283417486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8854589240073242548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e2a44ff83b1d84a95d1e98e0043e16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  agent: {fileID: 0}
+  drag: 0.3
 --- !u!114 &2485727459460213739
 MonoBehaviour:
   m_ObjectHideFlags: 0

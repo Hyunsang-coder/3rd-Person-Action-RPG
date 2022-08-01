@@ -8,7 +8,7 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public CharacterController Controller { get; private set; }
     //[field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
 
-    [field: SerializeField] public Gravity Gravity { get; private set; }
+    [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
 
 
     [field: SerializeField] public WeaponDamage Weapon { get; private set; }
