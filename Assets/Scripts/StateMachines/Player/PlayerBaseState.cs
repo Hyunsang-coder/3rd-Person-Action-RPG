@@ -12,7 +12,7 @@ public abstract class PlayerBaseState : State
     }
 
     
-
+    // 모션이 없어도 중력 표현을 위해 필요!
     protected void Move(float deltatime)
     {
         Move(Vector3.zero, deltatime);

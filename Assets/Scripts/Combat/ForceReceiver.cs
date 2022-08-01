@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class ForceReceiver : MonoBehaviour
 {
+    //공격을 받아 밀리는 것 + 점프/중력(y축 움직임) 관할, x,y 움직임은 PlayerBaseState 
     [SerializeField] CharacterController controller;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] float drag = 0.3f;
