@@ -17,6 +17,7 @@ public class PlayerJumpState : PlayerBaseState
 
     public override void Enter()
     {
+      
         stateMachine.ForceReceiver.Jump(stateMachine.JumpForce);
 
         momentum = stateMachine.Controller.velocity;
@@ -43,6 +44,8 @@ public class PlayerJumpState : PlayerBaseState
 
         FaceTarget();
     }
+
+    
 
     public override void Exit()
     {

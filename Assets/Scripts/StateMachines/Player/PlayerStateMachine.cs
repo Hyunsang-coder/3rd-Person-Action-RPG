@@ -16,13 +16,14 @@ public class PlayerStateMachine : StateMachine
     [field: SerializeField] public RagDoll Ragdoll { get; private set; }
     [field: SerializeField] public Animator Animator { get; private set; }
     [field: SerializeField] public Targeter Targeter { get; private set; }
+    [field: SerializeField] public LedgeDetector LedgeDetector { get; private set; }
+    [field: SerializeField] public Attack[] Attacks { get; private set; }
+
     [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
     [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
     [field: SerializeField] public float RotationDamping { get; private set; }
     [field: SerializeField] public float DodgeLength { get; private set; }
     [field: SerializeField] public float DodgeDuration { get; private set; }
-
-    [field: SerializeField] public Attack[] Attacks { get; private set; }
     [field: SerializeField] public float JumpForce { get; private set; }
 
     public Transform MainCameraTransform { get; private set; }
