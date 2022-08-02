@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class PlayerTargetingState : PlayerBaseState
 {
-    Vector2 dodingDirectionInput;
-    float remainingDodgeTime;
-
     public PlayerTargetingState(PlayerStateMachine stateMachine): base(stateMachine) {}
 
     private readonly int TargetingBlendTreeHash = Animator.StringToHash("TargetingBlendTree");
@@ -16,7 +13,6 @@ public class PlayerTargetingState : PlayerBaseState
     private readonly int TargetingRightHash = Animator.StringToHash("TargetingRight");
     
     const float CrossFadeDurataion = 0.1f;
-    bool isLockon;
     public override void Enter()
     {
         stateMachine.InputReader.TargetingEvent += OnCancel;
@@ -29,7 +25,7 @@ public class PlayerTargetingState : PlayerBaseState
 
     public override void Tick(float deltaTime)
     {
-
+    
         if (stateMachine.InputReader.IsAttacking)
         {
             stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
@@ -51,12 +47,9 @@ public class PlayerTargetingState : PlayerBaseState
         Vector3 movement = CanculateMovement(deltaTime);
         Move((movement + stateMachine.ForceReceiver.Movement)*stateMachine.TargetingMovementSpeed, deltaTime);
 
-        
         UpdateAnimator(deltaTime);
         FaceTarget();
-
     }
-
 
 
     
@@ -68,9 +61,8 @@ public class PlayerTargetingState : PlayerBaseState
 
     void OnDodge()
     {
-        stateMachine.SetDodgeTime(Time.deltaTime);
-        dodingDirectionInput = stateMachine.InputReader.MovementValue;
-        remainingDodgeTime = stateMachine.DodgeDuration;
+        if (stateMachine.InputReader.MovementValue == Vector2.zero) return;
+        stateMachine.SwitchState(new PlayerDodgeState(stateMachine, stateMachine.InputReader.MovementValue));
     }
 
     void OnJump()
@@ -81,20 +73,9 @@ public class PlayerTargetingState : PlayerBaseState
     Vector3 CanculateMovement(float deltaTime)
     {
         Vector3 movement = new Vector3();
-        if (remainingDodgeTime > 0)
-        {
-            movement += stateMachine.transform.right * dodingDirectionInput.x * stateMachine.DodgeLength / stateMachine.DodgeDuration;
-            movement += stateMachine.transform.forward * dodingDirectionInput.y * stateMachine.DodgeLength / stateMachine.DodgeDuration;
+        movement += stateMachine.transform.right * stateMachine.InputReader.MovementValue.x;
+        movement += stateMachine.transform.forward * stateMachine.InputReader.MovementValue.y;
 
-            remainingDodgeTime = Mathf.Max(remainingDodgeTime -deltaTime, 0f);
-        }
-        else
-        {
-            
-            movement += stateMachine.transform.right * stateMachine.InputReader.MovementValue.x;
-            movement += stateMachine.transform.forward * stateMachine.InputReader.MovementValue.y;
-
-        }
         return movement;
     }
 
