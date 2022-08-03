@@ -27,7 +27,7 @@ public class PlayerAttackingState : PlayerBaseState
         Move(deltaTime);
         FaceTarget();
 
-        float normalizedTime = GetNormalizedTime(stateMachine.Animator);
+        float normalizedTime = GetNormalizedTime(stateMachine.Animator, "Attack");
 
         // 애니메이션이 재생 중이라면,
         if (normalizedTime >= previousFrameTime && normalizedTime < 1f)

@@ -8,16 +8,32 @@ public class PlayerFreeLookState : PlayerBaseState
     private readonly int FreeLookSpeedHash = Animator.StringToHash("FreeLookSpeed");
 
     private const float AnimatorDampTime = 0.1f;
-        private const float CrossFadeDuration = 0.1f;
+    private const float CrossFadeDuration = 0.1f;
 
-    public PlayerFreeLookState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+    bool isCrossFade;
+
+    // bool parameter는 기본 값을 줬기 때문에 optional! 
+    public PlayerFreeLookState(PlayerStateMachine stateMachine, bool isCrossFade = true) : base(stateMachine)
+    {
+        this.isCrossFade = isCrossFade;
+    }
 
     
     public override void Enter()
     {
         stateMachine.InputReader.TargetingEvent += OnTarget;
         stateMachine.InputReader.JumpEvent += OnJump;
-        stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+
+        stateMachine.Animator.SetFloat(FreeLookSpeedHash, 0f);
+        if (isCrossFade)
+        {
+            stateMachine.Animator.CrossFadeInFixedTime(FreeLookBlendTreeHash, CrossFadeDuration);
+        }
+        else 
+        {
+            stateMachine.Animator.Play(FreeLookBlendTreeHash);
+        }
+        
     }
 
     public override void Tick(float deltaTime)
